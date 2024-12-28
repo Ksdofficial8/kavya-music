@@ -1,14 +1,26 @@
+import os
 import re
 from os import getenv
-
+API_ID = "27838385"
+API_HASH = "0710bd2a89a41c3506f98f7e6fd7294a"
+# ------------------------------------
+# ------------------------------------
 from dotenv import load_dotenv
 from pyrogram import filters
-
+# ------------------------------------
+# ------------------------------------
 load_dotenv()
+# ------------------------------------
+# -----------------------------------------------------
+# Get the API_ID and ensure it is a valid integer
+try:
+    API_ID = int(os.getenv("API_ID", "27838385").strip())
+except ValueError:
+    print("Falling back to default API_ID")
+    API_ID = 27838385  # Default fallback value
 
-# Get this value from my.telegram.org/apps
-API_ID = int(getenv("API_ID"))
-API_HASH = getenv("API_HASH")
+API_HASH = os.getenv("API_HASH", "0710bd2a89a41c3506f98f7e6fd7294a")
+print(f"API_ID: {API_ID}, API_HASH: {API_HASH}")
 
 # Get your token from @BotFather on Telegram.
 BOT_TOKEN = getenv("BOT_TOKEN")
